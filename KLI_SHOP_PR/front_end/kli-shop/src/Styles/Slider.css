@@ -1,0 +1,21 @@
+/* Styl dla kontenera suwaka */
+.horizontal-slider {
+    width: 80%; /* Dostosuj szerokość suwaka do własnych potrzeb */
+    margin: 20px auto; /* Centruj suwak w poziomie */
+  }
+  
+  /* Styl dla kciuka (thumb) suwaka */
+  .thumb {
+    height: 20px; /* Wysokość kciuka */
+    width: 20px; /* Szerokość kciuka */
+    border-radius: 50%; /* Zaokrąglij kciuk */
+    background-color: #3498db; /* Kolor kciuka */
+    cursor: grab; /* Kursor wskazujący, że suwak jest przesuwany */
+  }
+  
+  /* Styl dla toru (track) suwaka */
+  .track {
+    height: 10px; /* Wysokość toru */
+    background-color: #bdc3c7; /* Kolor toru */
+  }
+  

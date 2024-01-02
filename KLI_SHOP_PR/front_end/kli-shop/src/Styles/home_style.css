@@ -1,0 +1,39 @@
+/* styles.css */
+
+/* Styl dla Navbar */
+.navbar {
+    background-color: #3498db; /* Kolor tła */
+    padding: 15px; /* Wewnętrzny padding */
+  }
+  
+  /* Styl dla linków w Navbar */
+  .navbar a {
+    color: #fff; /* Kolor tekstu */
+    margin-right: 15px; /* Odstęp między linkami */
+    text-decoration: none; /* Usunięcie podkreślenia linków */
+    font-weight: bold; /* Grubość tekstu */
+  }
+  
+  /* Styl dla linków po najechaniu na nie myszką */
+  .navbar a:hover {
+    color: #ecf0f1; /* Kolor tekstu po najechaniu myszką */
+  }
+  
+  .custom-left-side-bg {
+    background-color: #EEDB96; /* Czerwony kolor w formacie RGB */
+  }
+  .custom-right-side-bg {
+    background-color: #F4F2EB; /* Czerwony kolor w formacie RGB */
+  }
+  .inside-container-bg{
+    background-color: #E0BC3B;
+  }
+  .outside-container-bg{
+    background-color: #FBF6E4;
+  }
+  .main-container-bg{
+    background-color: #F4F2EB;
+  }
+  .product-contaner-bg{
+    background-color: #DDBB88;
+  }

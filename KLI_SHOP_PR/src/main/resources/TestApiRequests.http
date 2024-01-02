@@ -1,0 +1,53 @@
+# Pobranie wszystkich klientów
+GET http://localhost:8080/customers/all
+Accept: application/json
+
+### Get Customer by his ID
+GET http://localhost:8080/customers/get/1
+Accept: application/json
+
+### Add new customer
+POST http://localhost:8080/customers/change
+Content-Type: application/json
+
+{
+  "name": "Nowy Klient",
+  "email": "nowy@klient.com",
+  "price": 100.00,
+  "order_data": "2023-01-01"
+}
+
+### Update Customer by Id
+PUT http://localhost:8080/customers/update/1
+Content-Type: application/json
+
+{
+  "name": "Zaktualizowany Klient",
+  "email": "aktualizowany@klient.com",
+  "price": 200.00,
+  "order_data": "2023-02-01"
+}
+
+### Remove Customer By Id
+DELETE http://localhost:8080/customers/delete/1
+
+### Addgin new products to customer
+POST http://localhost:8080/customers/addProducts/1
+Content-Type: application/json
+
+{
+  "newProducts": [
+    {
+      "id": 1,
+      "title": "Nowy Product",
+      "price": 21.5,
+      "description": "Super ciekawy produkt",
+      "category": "rzeczy takie i inne",
+      "image": "https://www.freeiconspng.com/thumbs/iphone-x-pictures/apple-iphone-x-pictures-5.png",
+      "rating": {
+        "rate": 12.5,
+        "count": 15
+      }
+    }
+  ]
+}
