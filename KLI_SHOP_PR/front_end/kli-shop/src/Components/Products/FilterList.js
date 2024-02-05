@@ -5,6 +5,32 @@ import { useDataContext } from "../Provider/DataProvider";
 import ReactSlider from "react-slider";
 import "../../Styles/Slider.css";
 
+/* Documentation:
+  The CategoriesList.js file is a React functional component responsible for displaying and updating category and price threshold filters for products. It utilizes React Bootstrap components and Axios for data fetching.
+
+  Structure of this component includes:
+  - Utilizes React Hooks such as 'useState' and 'useEffect' for managing component state and side effects.
+  - Imports 'Container', 'Form', 'Row', 'Col' from React Bootstrap for layout structuring.
+  - Utilizes the 'ReactSlider' component for a customizable price threshold slider.
+  - Utilizes the 'useDataContext' hook for accessing and updating shared data context.
+
+  Functions:
+    - handleLoadOfCategories(): Fetches product categories from the API endpoint and updates the state.
+    - handleCategoryChange(category): Updates the selected category in the state and shared data context.
+    - handleLoadThresholds(): Fetches price thresholds from the API endpoint and updates the state.
+    - handlePriceChange(value): Updates the price thresholds in the state and shared data context.
+
+  Return statement:
+    - Renders a container with a form containing radio buttons for categories and a price threshold slider.
+    - Displays the selected category and chosen price thresholds dynamically.
+
+  Note:
+    - Assumes the usage of React, Axios, React Bootstrap, and React Slider libraries.
+    - The 'useDataContext' hook is assumed to be provided by a higher-level data provider.
+*/
+
+
+
 export function CategoriesList() {
   const { attributesDictionary, updateAttributesDictionary } = useDataContext();
 

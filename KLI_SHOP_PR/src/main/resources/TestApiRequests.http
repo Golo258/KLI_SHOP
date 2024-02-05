@@ -9,7 +9,6 @@ Accept: application/json
 ### Add new customer
 POST http://localhost:8080/customers/change
 Content-Type: application/json
-
 {
   "name": "Nowy Klient",
   "email": "nowy@klient.com",

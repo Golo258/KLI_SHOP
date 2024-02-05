@@ -3,6 +3,39 @@ import axios from "axios";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+/* Documentation:
+  The EditCustomer.js file is responsible for editing an existing customer's details by fetching the customer information from the backend API and allowing users to update the data. It provides a form with pre-filled fields for a specific customer based on the customer's ID.
+
+  Structure of this function includes:
+  State:
+    - Uses the 'useState' hook to manage the state of the customer object, which contains fields like name, surname, email, age, phoneNumber, imageUrl, and gender.
+  
+  Hooks:
+    - Utilizes the 'useEffect' hook to load customer data when the component mounts.
+
+  Functions:
+    loadCustomer():
+      - Fetches customer information from the backend API using the customer's ID.
+      - Sets the state with the retrieved customer data.
+
+    handleInputChange(e):
+      - Updates the customer state based on user input in the form fields.
+
+    updateCustomer(e):
+      - Prevents the default form submission.
+      - Sends a PUT request to the API endpoint "/customers/update/:id" with the updated customer details.
+      - Redirects to the "/customers-view" page after successfully updating the customer.
+
+  Return statement:
+    - Renders a form with input fields for editing customer details.
+    - Fetches and displays the customer details based on the provided customer ID.
+    - Provides buttons to save the changes or cancel the editing process.
+
+  Note:
+    - This component assumes the presence of a backend API with the specified endpoints and functionality.
+    - The customer details are pre-filled in the form for editing.
+*/
+
 export function EditCustomer() {
   let navigate = useNavigate();
 

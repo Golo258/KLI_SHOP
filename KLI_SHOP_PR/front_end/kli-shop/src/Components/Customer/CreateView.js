@@ -3,6 +3,42 @@ import { NavBar } from "./NavBar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+/* Documentation:
+  The CreateView.js file is responsible for creating a new customer by collecting user input and sending a POST request to the backend API. It allows users to input customer details such as name, surname, email, age, phone number, and select an avatar based on gender.
+
+  Structure of this function includes:
+  State:
+    - Uses the 'useState' hook to manage the state of the customer object, which contains fields like name, surname, email, age, phoneNumber, imageUrl, and gender.
+
+  Functions:
+    handleInputChange(e):
+      - Updates the customer state based on user input in the form fields.
+
+    saveNewCustomer(e):
+      - Prevents the default form submission.
+      - Validates and sends a POST request to the API endpoint "/customers/addNewCustomer" with the customer details.
+      - Redirects to the "/customers-view" page after successfully saving the new customer.
+
+    handleGenderButtonClick(gender):
+      - Handles the button click event for selecting the gender.
+      - Resets the selected image when changing the gender.
+
+    handleImageClick(imageUrl):
+      - Handles the image click event for selecting the avatar image.
+
+    getImagesForGender():
+      - Returns an array of avatar images based on the selected gender.
+
+  Return statement:
+    - Renders a form with input fields for customer details.
+    - Allows users to select gender and choose an avatar from a list of predefined images.
+    - Provides buttons to save or cancel the creation of a new customer.
+
+  Note:
+    - This component assumes the presence of a backend API with the specified endpoints and functionality.
+    - The avatar images are loaded based on the selected gender, and the image URLs are displayed upon selection.
+*/
+
 export function CreateView() {
   let navigate = useNavigate();
   const [customer, setCustomer] = useState({

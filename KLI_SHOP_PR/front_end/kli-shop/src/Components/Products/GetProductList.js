@@ -3,6 +3,27 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useDataContext } from "../Provider/DataProvider";
 
+/* Documentation:
+  The ProductList.js file is a React functional component responsible for displaying a list of products based on selected category and price thresholds. It uses the 'useEffect' and 'useState' hooks for managing component state and fetching data from an API using Axios. It also leverages the 'useDataContext' hook for accessing shared data.
+
+  Structure of this component includes:
+  - Utilizes React Hooks such as 'useState' and 'useEffect' for managing component state and side effects.
+  - Imports 'Link' from React Router for navigation.
+  - Utilizes the 'useDataContext' hook for accessing and updating shared data context.
+
+  Functions:
+    - loadProducts(): Fetches products based on selected category and/or price thresholds from the API endpoint.
+  
+  Return statement:
+    - Renders a list of products with images, titles, prices, and links to view product details.
+
+  Note:
+    - Assumes the usage of React, Axios, and React Router libraries.
+    - The 'useDataContext' hook is assumed to be provided by a higher-level data provider.
+    - The structure assumes the existence of a product API with endpoints for filtering products by category and prices.
+*/
+
+
 export function ProductList() {
   const { attributesDictionary } = useDataContext();
   const [products, setProducts] = useState([]);

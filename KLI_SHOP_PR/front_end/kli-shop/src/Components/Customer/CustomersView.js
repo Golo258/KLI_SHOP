@@ -14,6 +14,30 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { NavBar } from "./NavBar";
 
+/* Documentation:
+  The CustomerView.js file is used:
+    to extract all customers information
+
+    Stucture of this function include:
+    Functions:
+      LoadCustomers():
+          Which load all customers by using our created API endpoint customers/all
+          During loading the customer we validate the status of our request in order to avoid errors
+          If everything is right, the customers variable are filled with data
+      HandleDelete():
+        Which remove specific customer by its id which is saved in database during its creation
+        After performing the customer removal we are redirected to home page
+      
+    Return statement:
+      Present our loaded customer in form of html structure:
+        We are using the attributes of Customer model and puting in specific fields in order to show its assigned values
+        In the last part return statement we have 3 option that what we want to do with the CustomeR:
+          View: We can load the SingleCustomerView.js file which present singular customer view
+          Edit: We can change our existing customer fields and save it in database. There We are redirected to EditCustomer.js
+          Delete: We can remove our customer by used previously presented function HandleDelete();;
+          
+*/
+
 export function CustomerView() {
   let navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
@@ -35,10 +59,9 @@ export function CustomerView() {
   };
   const handleDelete = async (id) => {
     await axios.delete(`http://localhost:8080/customers/delete/${id}`);
-    if (customers.length - 1 > 0){
+    if (customers.length - 1 > 0) {
       loadCustomers();
-    }
-    else{
+    } else {
       navigate("/");
     }
   };
@@ -48,7 +71,14 @@ export function CustomerView() {
       <section>
         <NavBar />
         <div className="customer-list">
-          {customers.length === 0 ? <div className="d-flex justify-content-center mt-3"> <h1> There is not customer in here. Create one</h1> </div> : <h2>Customers List: </h2>}
+          {customers.length === 0 ? (
+            <div className="d-flex justify-content-center mt-3">
+              {" "}
+              <h1> There is not customer in here. Create one</h1>{" "}
+            </div>
+          ) : (
+            <h2>Customers List: </h2>
+          )}
           {customers
             .filter((st) => st.name.toLowerCase().includes(search))
             .map((customer, index) => (
@@ -57,7 +87,7 @@ export function CustomerView() {
                 className="customer-item d-flex justify-content-center mb-4 border p-3"
               >
                 <div className="customer-info">
-                  <div>
+                  <div> 
                     <strong>ID:</strong> {index + 1}
                   </div>
                   <div>
@@ -78,9 +108,6 @@ export function CustomerView() {
                   <div>
                     <strong>Gender:</strong> {customer.gender}
                   </div>
-                  <div>
-                    <strong>Products:</strong> {customer.products}
-                  </div>
                   <div className="text-center my-3">
                     <img
                       src={customer.imageUrl}
@@ -91,12 +118,7 @@ export function CustomerView() {
                   </div>
                 </div>
                 <div className="customer-actions">
-                  {/* <Link
-                    to={`/view-customer/${customer.id}`}
-                    className="btn btn-success mx-4 my-2"
-                  >
-                    <FaBible /> Add Products
-                  </Link> */}
+                  ł{" "}
                   <Link
                     to={`/view-customer/${customer.id}`}
                     className="btn btn-primary mx-4 my-2"

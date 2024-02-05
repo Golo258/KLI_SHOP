@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kli.kli_shop_pr.Customer.Model.Customer;
 import com.kli.kli_shop_pr.Products.Exceptions.*;
 import com.kli.kli_shop_pr.Products.Model.Product;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/products")
 @CrossOrigin(origins = "http://localhost:3000")
+@Tag(name = "ProductController", description = "To perform operations on products")
 public class ProductController {
     private static final String apiURL = "https://fakestoreapi.com/products";
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -37,6 +40,10 @@ public class ProductController {
         }
 
     }
+    @Operation(
+            summary = "Get List of all products",
+            description = "Used to collect all products in a List"
+    )
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts() throws ResponseException, IOException, InterruptedException {
         ResponseEntity<List<Product>> allProduct = null;
@@ -46,6 +53,10 @@ public class ProductController {
         return allProduct;
     }
 
+    @Operation(
+            summary = "Get List of all product categories",
+            description = "Used to collect all product categories in a List"
+    )
     @GetMapping("/categories")
     public ResponseEntity<List<String>> getAllCategories() throws CategoryNotFoundException, ResponseException, IOException, InterruptedException {
         ResponseEntity<List<String>> allCategoriesEntity = null;
@@ -59,8 +70,14 @@ public class ProductController {
             allCategoriesEntity = new ResponseEntity<>(allCategories, HttpStatus.FOUND);
         }
         return allCategoriesEntity;
+
+
     }
 
+    @Operation(
+            summary = "Get Price Thresholds",
+            description = "Used to get the minimum and maximum price thresholds of products"
+    )
     @GetMapping("/pricesThresholds")
     public ResponseEntity<List<Double>> getPricesThresholds() throws ProductThresholdsNotFoundException, ResponseException, IOException, InterruptedException {
         ResponseEntity<List<Double>> pricesThresholdEntity = null;
@@ -81,6 +98,10 @@ public class ProductController {
         return pricesThresholdEntity;
     }
 
+    @Operation(
+            summary = "Get Price Thresholds",
+            description = "Used to get the minimum and maximum price thresholds of products"
+    )
     @GetMapping("/filter/prices/{thresholds}")
     public ResponseEntity<List<Product>> getPricesThresholds(@PathVariable List<Integer> thresholds) throws ProductPriceIsNotFoundBetweenThresholsException, ResponseException, IOException, InterruptedException {
         ResponseEntity<List<Product>> productsBetweenThresholdsEntity = null;
@@ -96,6 +117,10 @@ public class ProductController {
         return productsBetweenThresholdsEntity;
     }
 
+    @Operation(
+            summary = "Get product by its ID",
+            description = "Used to get a product based on its ID"
+    )
     @GetMapping("/get/{productId}")
     public Product getProductById(@PathVariable Long productId) throws IOException, InterruptedException, ResponseException {
         Product productByID = new Product();
@@ -103,6 +128,10 @@ public class ProductController {
         return productByID;
     }
 
+    @Operation(
+            summary = "Get products by category",
+            description = "Used to get products based on the specified category"
+    )
     @GetMapping("/filter/category/{chosenCategory}")
     public List<Product> filterProductByItsCategory(@PathVariable String chosenCategory) throws CategoryNotFoundException, ResponseException, IOException, InterruptedException {
         List<Product> productsByCategory = new ArrayList<>();
@@ -115,6 +144,10 @@ public class ProductController {
         return productsByCategory;
     }
 
+    @Operation(
+            summary = "Get products by price range",
+            description = "Used to get products within a specified price range"
+    )
     @GetMapping("/filter/byPrices")
     public List<Product> filterProductByItsPrice(@RequestParam List<Double> chosenPrices) throws ProductWithChosenPriceNotFound, ResponseException, IOException, InterruptedException {
         List<Product> productsByPrices = new ArrayList<>();
@@ -127,6 +160,7 @@ public class ProductController {
         }
         return productsByPrices;
     }
+
 
     public static String fetchDataFromApi() throws ResponseException, IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
